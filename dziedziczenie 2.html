@@ -1,0 +1,34 @@
+<script>
+
+class Pojazdy{
+
+    constructor(nazwa, cana){
+        this.nazwa = nazwa;
+        this.cana = cana;
+    }
+
+}
+
+
+class Samolot extends Pojazdy{
+
+    constructor(nazwa, cena, pulap){
+        super(nazwa, cena);
+        this.pulap = pulap; 
+    }
+
+}
+
+class Awionetka extends Samolot{
+
+    constructor(paliwo, pulap, cana, nazwa){
+        super(nazwa, cana, pulap);
+        this.paliwo = paliwo
+    }
+
+}
+
+let ob = new Awionetka("LPG", 100,  2.99, "Awiontka hello");
+console.log(ob);
+
+</script>

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="pl">
+<head>
+	<title>43</title>
+	<meta charset="UTF-8" />
+</head>
+<body>
+
+	<script>
+	
+		let waga = Number(prompt("Podaj swoją wage:"));
+		let wzrost = Number(prompt("Podaj swoj wzrost (w metrach):"));
+		
+		var bmi = waga/(wzrost*wzrost);
+		
+		if(bmi < 18.5){
+			console.log("niedowaga");
+		}
+		else if(bmi > 24.9){
+			console.log("dowaga");
+		}
+		else{
+			console.log("waga prawidłowa");
+		}
+	
+	</script>
+	
+</body>
+</html>

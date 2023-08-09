@@ -1,0 +1,184 @@
+<script>
+
+class Pacjent{
+
+    constructor(imie, nazwisko){
+        this.imie = imie;
+        this.nazwisko = nazwisko;
+        this.choroby = [];
+    }
+
+    dodajChorobe(choroba){
+        this.choroby.push(choroba);
+    }
+
+    wyswietlChoroby(){
+        for(let x of this.choroby){
+            console.log(x);
+        }
+    }
+}
+
+class Przychodnia{
+
+    constructor(nazwa, miasto){
+        this.nazwa = nazwa
+        this.miasto = miasto;
+        this.listaPacjentow = [];
+    }
+
+    sprawdzNazwisko(nazwisko){
+
+        for(let x of this.listaPacjentow){
+            if(x.nazwisko == nazwisko){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+}
+
+let listaPrzychodni = [];
+
+while(true){
+
+
+    let menu = Number(prompt("1-Przychodnia, 2-Pacjent, 3-koniec"));
+
+    if(menu == 1){
+
+        let menu2 = Number(prompt("1-dodaj przychodnie, 2-dodaj pacjenta, 3-lista przychodni, 4-lista pacjentow w przychodni"));
+
+        if(menu2 == 1){
+            let nazwa = prompt("Podaj nazwe przychodni");
+            let miasto = prompt("Podaj miasto przychodni");
+            let przychodnia = new Przychodnia(nazwa, miasto);
+            listaPrzychodni.push(przychodnia);
+            console.log("Przychodnia została dodana !");
+        }
+        else if(menu2 == 2){
+            let nazwa = prompt("Podaj nazwe przychodni");
+            let miasto = prompt("Podaj miasto przychodni");
+            
+            let znaleziono = false;
+            for(let x of listaPrzychodni){
+                if(x.nazwa == nazwa && x.miasto == miasto){
+
+                    znaleziono = true;
+                    let imie = prompt("Podaj imie pacjenta");
+                    let nazwisko = prompt("Podaj nazwisko pacjenta");
+                    
+                    if(x.sprawdzNazwisko(nazwisko) == false){
+                    
+                        let pacjent = new Pacjent(imie, nazwisko);
+                        x.listaPacjentow.push(pacjent);
+                        console.log("Pacjent został dodany !");
+                    }
+                    else{
+                        console.log("Pacjent istnieje !");
+                    }
+
+                }
+            }
+            
+            if(znaleziono == false){
+                console.log("Przychodnia o podanej nazwie nie istnieje !");
+            }
+        }
+        else if(menu2 == 3){
+            
+            for(let x of listaPrzychodni){
+                console.log(x.nazwa, x.miasto);
+            }
+        }
+        else if(menu2 == 4){
+            let nazwa = prompt("Podaj nazwe przychodni");
+            
+            let znaleziono = false;
+            for(let x of listaPrzychodni){
+                if(x.nazwa == nazwa){
+
+                    znaleziono = true;
+                    
+                    for(let y of x.listaPacjentow){
+                        console.log(y.imie, y.nazwisko);
+                    }
+
+                }
+            }
+            
+            if(znaleziono == false){
+                console.log("Przychodnia o podanej nazwie nie istnieje !");
+            }
+        }
+        
+
+
+    }
+    else if(menu == 2){
+        let menu2 = Number(prompt("1-dodaj chorobe, 2-lista chorob pacjenta"));
+
+        if(menu2 == 1){
+            let nazwa = prompt("Podaj nazwe przychodni");
+            
+            for(let x of listaPrzychodni){
+                if(x.nazwa == nazwa){
+
+                    let nazwisko = prompt("Podaj nazwisko pacjenta");
+                    for(let y of x.listaPacjentow){
+                    
+                        if(y.nazwisko == nazwisko){
+
+                            let choroba = prompt("Podaj nazwe chorby");
+                            y.dodajChorobe(choroba);
+
+                        }
+                    
+                    }
+
+                }
+            }
+        }
+        else if(menu2 == 2){
+            let nazwa = prompt("Podaj nazwe przychodni");
+            let nazwisko = prompt("Podaj nazwisko pacjenta");
+
+            for(let x of listaPrzychodni){
+                if(x.nazwa == nazwa){
+
+                    for(let y of x.listaPacjentow){
+                    
+                        if(y.nazwisko == nazwisko){
+                            
+                            y.wyswietlChoroby();
+
+                        }
+                    
+                    }
+
+                }
+            }
+
+
+        }
+    }
+    else if(menu == 3){
+        break;
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+</script>
